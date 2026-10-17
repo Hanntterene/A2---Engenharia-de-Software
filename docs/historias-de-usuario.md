@@ -54,3 +54,25 @@ Como coordenação, eu quero consultar as horas de monitoria realizadas por cada
 
 > Critério 5: O sistema permite essa consulta apenas à coordenação e recusa qualquer outro tipo de usuário.
 > Cenário 5: Dado que sou um aluno logado, quando tento consultar as horas de monitoria dos monitores, então o sistema recusa o acesso.
+
+    ## História 3 ##
+
+Como monitor, eu quero cadastrar os horários em que posso atender, para que os alunos reservem direto pelo sistema, sem precisar combinar cada atendimento por mensagem. - Prioridade: Alta - Justificativa: Sem os horários cadastrados pelos monitores, o aluno não tem o que reservar. Esta história alimenta a reserva de horários, que é o núcleo do pedido, e substitui o PDF no Moodle. - Trecho do e-mail do cliente: “Hoje os horários das monitorias são divulgados em um PDF no Moodle, e os alunos combinam o atendimento direto com os monitores, por mensagem.”
+
+> Critério 1: O sistema deve permitir que o monitor logado cadastre um horário de atendimento informando dia e hora de início.
+> Cenário 1: Dado que sou o monitor X, de Cálculo, logado e sem nenhum horário cadastrado, quando cadastro o horário de segunda-feira às 14:00, então o sistema salva o horário e o exibe na minha lista de horários cadastrados.
+
+> Critério 2: O sistema deve registrar cada horário com duração de 30 minutos.
+> Cenário 2:Dado que sou o monitor X logado, quando cadastro o horário de segunda-feira às 14:00, então o sistema registra o horário como seg 14:00-14:30.
+
+> Critério 3: O sistema não deve permitir cadastrar um horário que se sobreponha a outro já cadastrado pelo mesmo monitor.
+> Cenário 3: Dado que sou o monitor X logado e já tenho cadastrado seg 14:00-14:30, quando tento cadastrar um horário na segunda-feira às 14:15, então o sistema recusa o cadastro e informa que o horário conflita com outro já cadastrado.
+
+> Critério 4: O sistema deve exibir os horários cadastrados como livres para os alunos da disciplina do monitor.
+> Cenário 4: Dado que o monitor X, de Cálculo, cadastrou seg 14:00-14:30 e sou um aluno logado, quando escolho a disciplina de Cálculo e o monitor X, então o sistema exibe seg 14:00-14:30 como horário livre.
+
+> Critério 5: O sistema deve permitir que o monitor informe se aceita atendimento em grupo ou apenas individual, valendo essa escolha para todos os seus horários.
+> Cenário 5: Dado que sou o monitor X logado e tenho os horários seg 14:00-14:30 e ter 10:00-10:30 cadastrados, quando informo que aceito atendimento em grupo, então o sistema salva essa escolha e os dois horários passam a aceitar atendimento em grupo.
+
+> Critério 6: O sistema deve permitir o cadastro de horários apenas a usuários com perfil de monitor.
+> Cenário 6: Dado que sou aluno apenas, logado, quando tento acessar a tela de cadastro de horários de atendimento, então o sistema nega o acesso e não exibe a tela de cadastro.
