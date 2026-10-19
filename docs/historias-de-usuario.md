@@ -12,29 +12,17 @@ Como aluno, eu quero escolher uma disciplina, ver os horários livres de um moni
 > Critério 2: Ao escolher um monitor, o sistema retorna apenas os horários ainda livres, cada um com dia, hora de início e hora de fim.
 > Cenário 2: Dado que sou um aluno logado e o monitor X tem 5 horários livres (seg 14:00-14:30, seg 14:30-15:00, ter 10:00-10:30, ter 10:30-11:00, qua 16:00-16:30), quando escolho o monitor X, então o sistema exibe os 5 horários, cada um com dia, hora de início e hora de fim.
 
-> Critério 3: Ao escolher um horário, o sistema solicita que o aluno diga qual é a área da dúvida naquela matéria.
-> Cenário 3: Dado que sou um aluno logado e o monitor X, de Cálculo, tem o horário seg 14:00-14:30 livre, quando escolho esse horário, então o sistema me pergunta qual é a área da dúvida em Cálculo, com as opções Limites, Derivadas e Integrais para eu selecionar.
+> Critério 3: Horários já reservados por outro aluno não aparecem na lista de horários livres.
+> Cenário 3: Dado que sou um aluno logado e o horário seg 14:00-14:30 do monitor X já foi reservado por outro aluno, quando escolho o monitor X, então o sistema exibe apenas os horários seg 14:30-15:00, ter 10:00-10:30, ter 10:30-11:00 e qua 16:00-16:30.
 
-> Critério 4: Horários já reservados por outro aluno não aparecem na lista de horários livres.
-> Cenário 4: Dado que sou um aluno logado e o horário seg 14:00-14:30 do monitor X já foi reservado por outro aluno, quando escolho o monitor X, então o sistema exibe apenas os horários seg 14:30-15:00, ter 10:00-10:30, ter 10:30-11:00 e qua 16:00-16:30.
+> Critério 4: Ao reservar um horário livre, o sistema registra a reserva e o horário passa a ficar indisponível para os demais alunos.
+> Cenário 4: Dado que sou um aluno logado e o horário seg 14:00-14:30 do monitor X está livre, quando reservo esse horário, então o sistema registra a reserva e o horário deixa de aparecer como livre para os demais alunos.
 
-> Critério 5: Ao reservar um horário livre, o sistema registra a reserva e o horário passa a ficar indisponível para os demais alunos.
-> Cenário 5: Dado que sou um aluno logado e o horário seg 14:00-14:30 do monitor X está livre, quando reservo esse horário, então o sistema registra a reserva e o horário deixa de aparecer como livre para os demais alunos.
+> Critério 5: Dado que sou um aluno logado, estou vendo o horário seg 14:00-14:30 do monitor X como livre e outro aluno o reserva antes de eu confirmar, quando tento confirmar a minha reserva, então o sistema recusa a reserva e informa que o horário está indisponível.
+> Cenário 5: Dado um horário já reservado por outro aluno, quando tento reservá-lo, então o sistema recusa a reserva e informa que o horário está indisponível.
 
-> Critério 6: Dado que sou um aluno logado, estou vendo o horário seg 14:00-14:30 do monitor X como livre e outro aluno o reserva antes de eu confirmar, quando tento confirmar a minha reserva, então o sistema recusa a reserva e informa que o horário está indisponível.
-> Cenário 6: Dado um horário já reservado por outro aluno, quando tento reservá-lo, então o sistema recusa a reserva e informa que o horário está indisponível.
-
-> Critério 7: Se o monitor escolhido não tiver horários livres, o sistema informa isso e sugere outro monitor da mesma disciplina que tenha horários livres.
-> Cenário 7: Dado que sou um aluno logado, o monitor X, de Cálculo, não tem horários livres e o monitor Y, também de Cálculo, tem horários livres, quando escolho o monitor X, então o sistema informa que não há horários livres e sugere o monitor Y.
-
-> Critério 8: Ao escolher um horário de um monitor que aceita atendimento em grupo, o sistema deve perguntar ao aluno se a monitoria será em grupo ou individual.  
-> Cenário 8: Dado que sou um aluno logado e o monitor X, que aceita atendimento em grupo, tem o horário seg 14:00-14:30 livre, quando escolho esse horário, então o sistema me pergunta se a monitoria será em grupo ou individual, com as duas opções para eu selecionar.
-
-> Critério 9: Ao escolher um horário de um monitor que não aceita atendimento em grupo, o sistema não deve exibir a pergunta sobre grupo e deve registrar a reserva como individual.  
-> Cenário 9: Dado que sou um aluno logado e o monitor Y, que atende apenas individualmente, tem o horário ter 10:00-10:30 livre, quando escolho esse horário e confirmo a reserva, então o sistema não exibe a pergunta sobre atendimento em grupo e registra a reserva como individual.
-
-> Critério 10: O sistema deve indicar, para cada monitor listado, se ele aceita atendimento em grupo ou apenas individual.  
-> Cenário 10: Dado que sou um aluno logado e, em Cálculo, o monitor X aceita atendimento em grupo e o monitor Y atende apenas individualmente, quando escolho a disciplina Cálculo, então o sistema lista o monitor X com a indicação “aceita grupo” e o monitor Y com a indicação “individual”.
+> Critério 6: Se o monitor escolhido não tiver horários livres, o sistema informa isso e sugere outro monitor da mesma disciplina que tenha horários livres.
+> Cenário 6: Dado que sou um aluno logado, o monitor X, de Cálculo, não tem horários livres e o monitor Y, também de Cálculo, tem horários livres, quando escolho o monitor X, então o sistema informa que não há horários livres e sugere o monitor Y.
 
     ## História 2 ##
 
