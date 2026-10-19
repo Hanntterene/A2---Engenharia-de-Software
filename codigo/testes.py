@@ -29,9 +29,6 @@ def teste_listar_monitores_da_diciplina_sucesso(self):
         for monitor in resultado:
             self.assertEqual(monitor.disciplina, "Cálculo")
 
-if __name__ == "__main__":
-    unittest.main()
-
 # criterio 1 - falha
 def teste_disciplinas_sem_monitores(self):
     # Dado agenda sem monitores de fisica
@@ -75,4 +72,15 @@ def teste_disciplinas_sem_monitores(self):
 
 
     #criterio 2 - falha
-   
+    def teste_monitor_sem_horarios_cadastrados(self):
+         #dado: um monitor sem horários cadastrados
+        agenda = Agenda()
+        agenda.cadastrar_monitor(Monitor("Bob", "a222222", "Física"))
+        # Quando: escolho o monitor
+        resultado = agenda.listar_horarios_livres(agenda.monitores[0])
+        # Então: não aparecem horários livres 
+         self.assertEqual(len(resultado), 0)
+
+
+  if __name__ == "__main__":
+    unittest.main() 
