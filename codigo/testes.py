@@ -53,4 +53,26 @@ def teste_disciplinas_sem_monitores(self):
 
         # Então: não aparecem monitores de Física
         self.assertEqual(len(resultado), 0)
-    
+
+    # criterio 2 - sucesso
+    def teste_listar_horarios_livre(self):
+        # Dado: um monitor cadastrado com 3 horários
+        agenda = Agenda()
+        alice = Monitor("Alice", "a2669994", "Cálculo")
+        alice.horarios.append(Horario("Segunda", "14:00", "14:30"))
+        alice.horarios.append(Horario("Segunda", "14:30", "15:00"))
+        alice.horarios.append(Horario("Terça", "10:00", "10:30"))
+        agenda.cadastrar_monitor(alice)
+
+        # Quando: escolho o monitor
+        resultado = agenda.listar_horarios_livres(alice)
+
+        # Então: aparecem os 3, cada um com dia, início e fim
+        self.assertEqual(len(resultado), 3)
+        self.assertEqual(resultado[0].dia, "Segunda")
+        self.assertEqual(resultado[0].inicio, "14:00")
+        self.assertEqual(resultado[0].fim, "14:30")
+
+
+    #criterio 2 - falha
+   
