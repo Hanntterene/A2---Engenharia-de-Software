@@ -109,7 +109,22 @@ def teste_horario_resevado_não_aparece_livre(self):
     self.assertEqual(len(resultado), 4)
     self.assertNotIn(h[3], resultado)  # O horário reservado não deve estar na lista de horários livres
 
+#critério 4 - sucesso
+def test_reserva_horario_livre_registra_reserva(self):
 
+
+#critério 4 - falha
+def test_reserva_horario_inexistente(self):
+
+
+#criterio 5 - falha
+def test_reserva_horario_ocupado(self):
+
+#critério 6 - sucesso
+def test_monitor_sem_horarios_sugere_outro_monitor(self):
+
+#critério 6 - falha
+def test_nenhum_monitor_com_horarios_livres(self):
 
 if __name__ == "__main__":
     unittest.main()
