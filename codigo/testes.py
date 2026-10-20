@@ -1,6 +1,6 @@
 import unittest
 
-from classes import Agenda, Horario, Monitor
+from classes import Agenda, Aluno, Horario, Monitor
 
 
 class TestAgenda(unittest.TestCase):
@@ -83,6 +83,32 @@ class TestAgenda(unittest.TestCase):
 
         # Então: não aparecem horários livres
         self.assertEqual(len(resultado), 0)
+
+#critério 3 - sucesso
+def teste_horario_resevado_não_aparece_livre(self):
+    #dado: monitor com 5 horários cadastrados, sendo 1 reservado
+    agenda = Agenda()
+    alice = Monitor("Alice", "a2669994", "Cálculo")
+    h = [
+        Horario("Quarta", "10:00", "10:30"), 
+        Horario("Quarta", "10:30", "11:00"), 
+        Horario("Quarta", "11:00", "11:30"), 
+        Horario("Quarta", "11:30", "12:00"), 
+        Horario("Quarta", "12:00", "12:30")]
+    for horario in h:
+        alice.horarios.append(horario)
+    agenda.cadastrar_monitor(alice)
+
+    outro_aluno = Aluno("Carlos", "a123456")
+    agenda.reservar(outro_aluno, h[3])  # Reservando o terceiro horário
+
+    #quando: escolho o monitor
+    resultado = agenda.listar_horarios_livres(alice)
+
+    #então: só aparecem os 4 horários livres, o reservado não aparece
+    self.assertEqual(len(resultado), 4)
+    self.assertNotIn(h[3], resultado)  # O horário reservado não deve estar na lista de horários livres
+
 
 
 if __name__ == "__main__":
