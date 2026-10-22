@@ -50,11 +50,29 @@ class Agenda:
         return horariosLivres       #E retorna a lista dos horarios livres
 
     def reservar(self, aluno, horario):
-        #Precisa do aluno pra saber quem vai agendar e o horario que ele quer
-        pass
+        existeHorario = False
+        for monitor in self.monitores:
+            if horario in monitor.horarios:
+                existeHorario = True
+        if not existeHorario:
+            raise ValueError("Nao existe esse horario")
+
+        #Ve se ainda tem horario livre, se nao tiver, dá erro
+        if not horario.livre:
+            raise ValueError("Esse horario esta ocupado!")
+
+        #Salva a reserva
+        horario.livre = False
+        reserva = Reserva(aluno, horario)
+        self.reservas.append(reserva)       #Adiciona a reserva de horario
+        return reserva
 
     def sugerir_monitor(self, monitor):
-        #Precisa de um monitor sem nenhum horario livre para ai sim recomendar outro
-        pass
-
-
+        for outroMonitor in self.monitores:    #Para cada monitor cadastrado na agenda
+            if outroMonitor is monitor:    #Se outroMonitor é o mesmo monitor que o aluno escolheu
+                continue        #Pula o monitor escolhido
+            if outroMonitor.disciplina != monitor.disciplina:      #Se a disciplina for diferente da solicitada
+                continue        #Pula monitores de outra disciplina
+            if self.listar_horarios_livres(outroMonitor):      #Se algum outro monitor estiver com algum horario livre
+                return outroMonitor        #Ai sim retorna ele
+        return None     #Se ninguem tiver disponivel, retorna ninguem
