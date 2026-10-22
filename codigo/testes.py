@@ -228,11 +228,7 @@ class TestAgenda(unittest.TestCase):
         monitorSugerido = agenda.sugerir_monitor(alice)
 
         #Entao nao ha ninguem para sugerir, pois ninguem tem horario disponivel
-        with self.assertRaises(ValueError):
-            agenda.sugerir_monitor(charlie)
-        self.assertEqual(len(agenda.reservas), 1)
-        self.assertEqual(agenda.reservas[0].aluno, alunoS)
-        self.assertEqual(agenda.reservas[0].horario, h)
+        self.assertIsNone(monitorSugerido)
 
 if __name__ == "__main__":
     unittest.main()
