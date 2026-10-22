@@ -156,33 +156,33 @@ class TestAgenda(unittest.TestCase):
 
 
 
-        #criterio 5 - falha
-        def test_reserva_horario_ocupado(self):
-            #Dado um monitor com 4 horarios de agendamento cadastrados e um aluno reserva um horario
-            agenda = Agenda()
-            heidi = Monitor("Heidi", "a888888", "POO")
-            h = [
-                Horario("Segunda", "11:00", "11:30"),
-                Horario("Segunda", "11:30", "12:00"),
-                Horario("Quarta", "13:00", "13:30"),
-                Horario("Quarta", "13:30", "14:00")]
-            for horario in h:
-                heidi.horarios.append(horario) 
-            agenda.cadastrar_monitor(heidi)
+    #criterio 5 - falha
+    def test_reserva_horario_ocupado(self):
+        #Dado um monitor com 4 horarios de agendamento cadastrados e um aluno reserva um horario
+        agenda = Agenda()
+        heidi = Monitor("Heidi", "a888888", "POO")
+        h = [
+            Horario("Segunda", "11:00", "11:30"),
+            Horario("Segunda", "11:30", "12:00"),
+            Horario("Quarta", "13:00", "13:30"),
+            Horario("Quarta", "13:30", "14:00"),
+        ]
+        for horario in h:
+            heidi.horarios.append(horario)
+        agenda.cadastrar_monitor(heidi)
 
-            alunoP = Aluno("Paul", "a2356000")
-            agenda.reservar(alunoP, h[1])
+        alunoP = Aluno("Paul", "a2356000")
+        agenda.reservar(alunoP, h[1])
 
-            #Quando outro aluno tenta reservar um horario ocupado
-            alunoI = Aluno("Ian", "a2343789")
+        #Quando outro aluno tenta reservar um horario ocupado
+        alunoI = Aluno("Ian", "a2343789")
 
-            #Entao ele da erro pois nao consegue reservar o mesmo horario que outro aluno
-            
-            with self.assertRaises(ValueError):
-                agenda.reservar(alunoI, h[1])
-            self.assertEqual(len(agenda.reservas), 1)
-            self.assertEqual(agenda.reservas[0].aluno, alunoP)
-            self.assertEqual(agenda.reservas[0].horario, h[1])
+        #Entao ele da erro pois nao consegue reservar o mesmo horario que outro aluno
+        with self.assertRaises(ValueError):
+            agenda.reservar(alunoI, h[1])
+        self.assertEqual(len(agenda.reservas), 1)
+        self.assertEqual(agenda.reservas[0].aluno, alunoP)
+        self.assertEqual(agenda.reservas[0].horario, h[1])
 
 
         #critério 6 - sucesso
