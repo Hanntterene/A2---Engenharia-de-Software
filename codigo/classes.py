@@ -42,8 +42,12 @@ class Agenda:
         return monitoresEncontrados     #Retorna a lista dos monitores encontrados
 
     def listar_horarios_livres(self, monitor):
-        #Precisa do monitor para ver o horario disponivel do mesmo
-        pass
+        #Mostra os horarios livres dos monitores (se alguem tiver)
+        horariosLivres = []     #Lista de horarios livres
+        for horario in monitor.horarios:
+            if horario.livre:       #Se o monitor tiver horario livre
+                horariosLivres.append(horario)      #Ele salva na lista de horarios
+        return horariosLivres       #E retorna a lista dos horarios livres
 
     def reservar(self, aluno, horario):
         #Precisa do aluno pra saber quem vai agendar e o horario que ele quer
