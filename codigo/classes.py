@@ -43,6 +43,8 @@ class Agenda:
 
     def listar_horarios_livres(self, monitor):
         #Mostra os horarios livres dos monitores (se alguem tiver)
+        if monitor not in self.monitores:   #Valida se existe monitor cadastrado
+            raise ValueError("Monitor nao cadastrado!") #Se nao existir, cai aqui
         horariosLivres = []     #Lista de horarios livres
         for horario in monitor.horarios:
             if horario.livre:       #Se o monitor tiver horario livre
